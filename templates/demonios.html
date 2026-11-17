@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Devil May Cry - Demônios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav><a href="/">← Voltar ao Início</a></nav>
+    <h1>Bestiário de Demônios</h1>
+
+    <form id="form-demonio">
+        <input type="text" id="nome-demonio" placeholder="Nome (ex: Urizen)" required>
+        <input type="text" id="classe-demonio" placeholder="Classe (ex: Rei Demônio)" required>
+        <input type="number" id="ameaca-demonio" placeholder="Nível de Ameaça (1-10)" min="1" max="10" required>
+        <button type="submit">Registrar Demônio</button>
+    </form>
+
+    <ul id="lista-demonios"></ul>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,12 +1,16 @@
-
 class Missao:
-    def __init__(self, titulo, descricao, dificuldade,
-                 cacador_id, demonio_id, status="Pendente", id=None):
-
+    def __init__(self, titulo, recompensa, status="Pendente", cacador_id=None, id=None):
         self.id = id
         self.titulo = titulo
-        self.descricao = descricao
-        self.dificuldade = dificuldade
+        self.recompensa = float(recompensa)
         self.status = status
         self.cacador_id = cacador_id
-        self.demonio_id = demonio_id
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "titulo": self.titulo,
+            "recompensa": self.recompensa,
+            "status": self.status,
+            "cacador_id": self.cacador_id
+        }

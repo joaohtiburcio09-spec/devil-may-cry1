@@ -1,39 +1,31 @@
-
-from config import conectar
+from config import get_connection
 from models.demonio import Demonio
 
-
 class DemonioDAO:
-
-    def cadastrar(self, demonio):
-        conexao = conectar()
-        cursor = conexao.cursor()
-
-        sql = """
-        INSERT INTO demonios (nome, categoria, nivel_perigo)
-        VALUES (%s, %s, %s)
-        """
-
-        valores = (
-            demonio.nome,
-            demonio.categoria,
-            demonio.nivel_perigo
-        )
-
-        cursor.execute(sql, valores)
-        conexao.commit()
-
-        cursor.close()
-        conexao.close()
-
-    def consultar_todos(self):
-        conexao = conectar()
-        cursor = conexao.cursor(dictionary=True)
-
+    def listar_todos(self):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT * FROM demonios")
-        resultados = cursor.fetchall()
-
+        rows = cursor.fetchall()
         cursor.close()
-        conexao.close()
+        conn.close()
+        return [Demonio(r["nome"], r["classe"], r["nivel_ameaca"], r["id"]) for r in rows]
 
-        return resultados
+    def inserir(self, demonio: Demonio):
+        conn = get_connection()
+        cursor = conn.cursor()
+        sql = "INSERT INTO demonios (nome, classe, nivel_ameaca) VALUES (%s, %s, %s)"
+        cursor.execute(sql, (demonio.nome, demonio.classe, demonio.nivel_ameaca))
+        conn.commit()
+        demonio.id = cursor.lastrowid
+        cursor.close()
+        conn.close()
+        return demonio
+
+    def deletar(self, id: int):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM demonios WHERE id = %s", (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()

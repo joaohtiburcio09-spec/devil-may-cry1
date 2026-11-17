@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Devil May Cry - Caçadores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Agência Devil May Cry - Caçadores</h1>
+
+    <form id="form-cacador">
+        <input type="text" id="nome" placeholder="Nome (ex: Dante)" required>
+        <input type="text" id="especialidade" placeholder="Especialidade" required>
+        <select id="rank">
+            <option value="SSS">SSS</option>
+            <option value="SS">SS</option>
+            <option value="S">S</option>
+            <option value="A">A</option>
+        </select>
+        <button type="submit">Cadastrar Caçador</button>
+    </form>
+
+    <ul id="lista-cacadores"></ul>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Devil May Cry - Missões</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav><a href="/">← Voltar ao Início</a></nav>
+    <h1>Quadro de Missões & Contratos</h1>
+
+    <form id="form-missao">
+        <input type="text" id="titulo-missao" placeholder="Título do Contrato" required>
+        <input type="number" id="recompensa-missao" placeholder="Recompensa (Red Orbs)" step="0.01" required>
+        <button type="submit">Criar Missão</button>
+    </form>
+
+    <ul id="lista-missoes"></ul>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

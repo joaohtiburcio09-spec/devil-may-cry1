@@ -1,12 +1,14 @@
+class Cacador:
+    def __init__(self, nome, especialidade, rank_estilo="SSS", id=None):
+        self.id = id
+        self.nome = nome
+        self.especialidade = especialidade
+        self.rank_estilo = rank_estilo
 
-import mysql.connector
-
-def conectar():
-    conexao = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="devil_may_cry"
-    )
-
-    return conexao
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "especialidade": self.especialidade,
+            "rank_estilo": self.rank_estilo
+        }
